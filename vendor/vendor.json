@@ -37,7 +37,19 @@
 			"path": "github.com/lib/pq/oid",
 			"revision": "dd1fe2071026ce53f36a39112e645b4d4f5793a4",
 			"revisionTime": "2017-07-07T05:36:02Z"
+		},
+		{
+			"checksumSHA1": "UWjVYmoHlIfHzVIskELHiJQtMOI=",
+			"path": "golang.org/x/crypto/bcrypt",
+			"revision": "6914964337150723782436d56b3f21610a74ce7b",
+			"revisionTime": "2017-07-20T17:50:53Z"
+		},
+		{
+			"checksumSHA1": "oVPHWesOmZ02vLq2fglGvf+AMgk=",
+			"path": "golang.org/x/crypto/blowfish",
+			"revision": "6914964337150723782436d56b3f21610a74ce7b",
+			"revisionTime": "2017-07-20T17:50:53Z"
 		}
 	],
-	"rootPath": "github.com/tamizhvendan/midway"
+	"rootPath": "github.com/tamizhvendan/gomidway"
 }
