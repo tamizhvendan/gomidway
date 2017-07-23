@@ -1,4 +1,4 @@
-package api
+package signup
 
 import (
 	"github.com/jinzhu/gorm"
@@ -6,17 +6,17 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-type SignupUser struct {
+type Request struct {
 	Username string
 	Email    string
 	Password string
 }
 
-type UserSignedup struct {
+type Response struct {
 	Id uint
 }
 
-func Signup(db *gorm.DB, req *SignupUser) (*UserSignedup, error) {
+func Signup(db *gorm.DB, req *Request) (*Response, error) {
 	passwordHash, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
 	if err != nil {
 		return nil, err
@@ -31,5 +31,5 @@ func Signup(db *gorm.DB, req *SignupUser) (*UserSignedup, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &UserSignedup{Id: id}, err
+	return &Response{Id: id}, err
 }
