@@ -27,7 +27,6 @@ func main() {
 
 	signupUser(db)
 	loginUser(db)
-
 }
 
 func signupUser(db *gorm.DB) {
