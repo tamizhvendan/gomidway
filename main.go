@@ -5,6 +5,8 @@ import (
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"github.com/tamizhvendan/gomidway/post"
+	"github.com/tamizhvendan/gomidway/post/publish"
 	"github.com/tamizhvendan/gomidway/user"
 	"github.com/tamizhvendan/gomidway/user/login"
 	"github.com/tamizhvendan/gomidway/user/signup"
@@ -27,6 +29,7 @@ func main() {
 
 	signupUser(db)
 	loginUser(db)
+	publishPost(db)
 }
 
 func signupUser(db *gorm.DB) {
@@ -66,14 +69,23 @@ func loginUser(db *gorm.DB) {
 			return
 		}
 	}
-	fmt.Printf("Ok: User '%s' logged in", res.User.Username)
+	fmt.Printf("Ok: User '%s' logged in\n", res.User.Username)
 }
 
-/*
-Created:  1
-Bad Request:  Username 'foo' already exists
-Bad Request:  Email 'foo@bar.com' already exists
-Created:  4
-Ok: User 'foo' logged in
-Bad Request:  password didn't match
-*/
+func publishPost(db *gorm.DB) {
+	res, err := publish.NewPost(db, &publish.Request{
+		AuthorId: 1,
+		Body:     "Golang rocks!",
+		Title:    "My first gomidway post",
+		Tags:     []string{"intro", "golang"},
+	})
+	if err != nil {
+		if _, ok := err.(*post.TitleDuplicateError); ok {
+			fmt.Println("Bad Request: ", err.Error())
+			return
+		}
+		fmt.Println("Internal Server Error: ", err.Error())
+		return
+	}
+	fmt.Println("Created : ", res.PostId)
+}
