@@ -11,7 +11,7 @@ import (
 type Request struct {
 	Title    string
 	Body     string
-	AuthorId uint
+	AuthorID uint
 	Tags     []string
 }
 
@@ -25,7 +25,7 @@ func NewPost(db *gorm.DB, req *Request) (*Response, error) {
 		return nil, tx.Error
 	}
 	newPost := &post.Post{
-		AuthorID:    req.AuthorId,
+		AuthorID:    req.AuthorID,
 		Title:       req.Title,
 		Body:        req.Body,
 		PublishedAt: time.Now().UTC(),

@@ -74,7 +74,7 @@ func loginUser(db *gorm.DB) {
 
 func publishPost(db *gorm.DB) {
 	res, err := publish.NewPost(db, &publish.Request{
-		AuthorId: 1,
+		AuthorID: 1,
 		Body:     "Golang rocks!",
 		Title:    "My first gomidway post",
 		Tags:     []string{"intro", "golang"},
@@ -87,5 +87,5 @@ func publishPost(db *gorm.DB) {
 		fmt.Println("Internal Server Error: ", err.Error())
 		return
 	}
-	fmt.Println("Created : ", res.PostId)
+	fmt.Println("Created: ", res.PostId)
 }

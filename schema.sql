@@ -10,7 +10,7 @@ CREATE TABLE posts(
   title VARCHAR(50) UNIQUE NOT NULL,
   body TEXT NOT NULL,
   published_at TIMESTAMP NOT NULL,
-  author_id INTEGER REFERENCES users(id)
+  author_id INTEGER NOT NULL REFERENCES users(id)
 );
 
 CREATE TABLE tags(
