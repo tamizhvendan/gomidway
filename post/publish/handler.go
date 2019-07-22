@@ -32,6 +32,7 @@ func NewPost(db *gorm.DB, req *Request) (*Response, error) {
 	}
 	_, err := post.Create(tx, newPost)
 	if err != nil {
+		tx.Rollback()
 		return nil, err
 	}
 	for _, tagName := range req.Tags {
